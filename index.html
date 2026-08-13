@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Deltix Network — Stake, Vote, Play, Verify</title>
+  <meta name="description" content="Deltix Network is a mobile-first Delegated Proof-of-Stake network with a live DAO, a verifiable chain, and the Deltix Arcade. No mining. No fees to start." />
+  <!-- Paste your Google site-verification tag below when Play Console / Search Console asks: -->
+  <!-- <meta name="google-site-verification" content="PASTE-TOKEN-HERE" /> -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='25' y='25' width='50' height='50' rx='6' fill='%231f66f2' transform='rotate(45 50 50)'/%3E%3C/svg%3E" />
+  <style>
+    :root {
+      --blue: #1f66f2; --ink: #0f172a; --muted: #64748b;
+      --border: #e6eaf2; --bg-soft: #f6f8fc; --green: #16a34a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, Arial, sans-serif; color: var(--ink); background: #fff; line-height: 1.6; }
+    a { color: var(--blue); text-decoration: none; }
+    .wrap { max-width: 1060px; margin: 0 auto; padding: 0 22px; }
+
+    header { position: sticky; top: 0; background: rgba(255,255,255,.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 10; }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; color: var(--ink); }
+    .diamond { width: 26px; height: 26px; }
+    .nav-links { display: flex; gap: 22px; align-items: center; font-size: 14px; font-weight: 600; }
+    .nav-links a { color: var(--muted); }
+    .nav-links a:hover { color: var(--blue); }
+    .btn { display: inline-block; padding: 12px 22px; border-radius: 12px; font-weight: 700; font-size: 15px; transition: transform .12s ease, box-shadow .12s ease; }
+    .btn.primary { background: linear-gradient(135deg, #1f66f2, #7c3aed); color: #fff; box-shadow: 0 4px 14px rgba(31,102,242,.25); }
+    .btn.primary:hover { transform: translateY(-1px); }
+    .btn.ghost { border: 1px solid var(--border); color: var(--ink); }
+    .btn.small { padding: 9px 16px; font-size: 14px; }
+
+    .hero { text-align: center; padding: 84px 0 60px; background: radial-gradient(900px 420px at 50% -60px, #eaf1ff 0%, #ffffff 70%); }
+    .hero .diamond-big { width: 84px; height: 84px; margin-bottom: 22px; }
+    .hero h1 { font-size: clamp(34px, 6vw, 58px); line-height: 1.12; letter-spacing: -.5px; font-weight: 800; }
+    .hero h1 span { color: var(--blue); }
+    .hero p.sub { max-width: 640px; margin: 18px auto 30px; color: var(--muted); font-size: 18px; }
+    .cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .live-badges { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+    .live-pill { background: #e8f8ef; color: var(--green); font-size: 12.5px; font-weight: 700; padding: 6px 14px; border-radius: 999px; }
+
+    section { padding: 64px 0; }
+    section.soft { background: var(--bg-soft); }
+    .sec-title { text-align: center; font-size: 30px; font-weight: 800; margin-bottom: 8px; }
+    .sec-sub { text-align: center; color: var(--muted); max-width: 620px; margin: 0 auto 40px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    .card { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
+    .card .icon { font-size: 30px; color: var(--blue); margin-bottom: 10px; }
+    .card h3 { font-size: 17px; margin-bottom: 6px; }
+    .card p { color: var(--muted); font-size: 14.5px; }
+
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .step { background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 26px; position: relative; }
+    .step::before { counter-increment: step; content: counter(step); position: absolute; top: -14px; left: 22px; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); color: #fff; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+    .step h3 { font-size: 16px; margin-bottom: 6px; padding-top: 4px; }
+    .step p { color: var(--muted); font-size: 14px; }
+
+    .fair { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; text-align: center; }
+    .fair .num { font-size: 34px; font-weight: 800; color: var(--blue); }
+    .fair .lbl { color: var(--muted); font-size: 14px; }
+
+    footer { border-top: 1px solid var(--border); padding: 46px 0 60px; font-size: 13.5px; color: var(--muted); }
+    .foot-grid { display: flex; justify-content: space-between; gap: 28px; flex-wrap: wrap; margin-bottom: 26px; }
+    .foot-col h4 { color: var(--ink); font-size: 14px; margin-bottom: 10px; }
+    .foot-col a { display: block; color: var(--muted); margin-bottom: 7px; }
+    .foot-col a:hover { color: var(--blue); }
+    .disclaimer { border-top: 1px solid var(--border); padding-top: 22px; font-size: 12.5px; line-height: 1.7; }
+    @media (max-width: 640px) { .nav-links a.hide-m { display: none; } }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <svg class="diamond" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="25" width="50" height="50" rx="8" fill="#1f66f2" transform="rotate(45 50 50)"/></svg>
+      DELTIX <span style="color:#1f66f2">NETWORK</span>
+    </div>
+    <nav class="nav-links">
+      <a href="#features" class="hide-m">Features</a>
+      <a href="#how" class="hide-m">How it works</a>
+      <a href="https://github.com/deltixnetwork/deltix-frontend-code/blob/main/WHITEPAPER.md">Whitepaper</a>
+      <a class="btn primary small" href="https://app.deltixllc.com">Launch App</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <svg class="diamond-big" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><rect x="25" y="25" width="50" height="50" rx="8" fill="#1f66f2" transform="rotate(45 50 50)"/></svg>
+    <h1>Stake. Vote. Play. <span>Verify.</span></h1>
+    <p class="sub">Deltix Network is a mobile-first Delegated Proof-of-Stake network with a community DAO live from block one, a publicly verifiable chain, and ten arcade games that reward participation.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="https://app.deltixllc.com">Launch the App ◆</a>
+      <a class="btn ghost" href="https://github.com/deltixnetwork/deltix-frontend-code/blob/main/WHITEPAPER.md">Read the Whitepaper</a>
+    </div>
+    <div class="live-badges">
+      <span class="live-pill">● DAO — live</span>
+      <span class="live-pill">● Deltix Chain — live</span>
+      <span class="live-pill">● Arcade — live</span>
+      <span class="live-pill">● In-app Explorer — live</span>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="wrap">
+    <h2 class="sec-title">Everything on your phone. Nothing to mine.</h2>
+    <p class="sec-sub">Your phone is a gateway, not a miner — validator nodes run on dedicated infrastructure while you stake, govern, and play from anywhere.</p>
+    <div class="grid">
+      <div class="card"><div class="icon">⛃</div><h3>DPoS Staking</h3><p>Delegate $DLTX to validators and earn variable protocol rewards. Transparent commissions, uptime-weighted, unstake anytime under protocol rules.</p></div>
+      <div class="card"><div class="icon">🗳</div><h3>DAO from Day One</h3><p>Every staked $DLTX is a vote. Propose changes, vote on live proposals, and watch the protocol evolve by community decision — from the very first block.</p></div>
+      <div class="card"><div class="icon">⛓</div><h3>Verifiable Chain</h3><p>Every transfer, stake, reward, burn, and vote is sealed into SHA-256 hash-linked blocks. Inspect any transaction in the built-in explorer — or verify the whole chain yourself.</p></div>
+      <div class="card"><div class="icon">▷</div><h3>Deltix Arcade</h3><p>Ten original skill games — Sudoku, Reversi, Snake, Merge 2048 and more. Win to earn capped daily $DLTX rewards. Free to play, no wagering, ever.</p></div>
+      <div class="card"><div class="icon">⬡</div><h3>D-Browser</h3><p>A curated Web3 gateway with a security interstitial on every launch. Explore dApps inside the app without ever exposing your keys.</p></div>
+      <div class="card"><div class="icon">🛡</div><h3>Security First</h3><p>Encrypted wallet keys, email-verified identity, forced-update protection, and an anti-fraud referral system hard-capped at 3 invites — no downlines, no pyramids.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft" id="how">
+  <div class="wrap">
+    <h2 class="sec-title">Live in 60 seconds</h2>
+    <p class="sec-sub">No seed phrases to write down, no gas to buy, no hardware to configure.</p>
+    <div class="steps">
+      <div class="step"><h3>Verify your email</h3><p>One code. Your wallet is created instantly with a 100 $DLTX welcome bonus.</p></div>
+      <div class="step"><h3>Stake &amp; vote</h3><p>Delegate to a validator, then use your staked balance as voting power in the DAO.</p></div>
+      <div class="step"><h3>Play &amp; earn</h3><p>Win arcade games for daily-capped rewards, and invite up to 3 friends.</p></div>
+      <div class="step"><h3>Verify everything</h3><p>Open the in-app explorer and trace your actions block by block.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2 class="sec-title">Fair by design</h2>
+    <p class="sec-sub">The allocation policy is enforced by the protocol — not by promise.</p>
+    <div class="fair">
+      <div><div class="num">80%</div><div class="lbl">of distributed supply always belongs to the community</div></div>
+      <div><div class="num">20%</div><div class="lbl">hard cap on core-team allocation, enforced in code</div></div>
+      <div><div class="num">3</div><div class="lbl">referral slots per account — single level, no downlines</div></div>
+      <div><div class="num">0</div><div class="lbl">entry fees, wagering, or paid memberships</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="soft">
+  <div class="wrap" style="text-align:center">
+    <h2 class="sec-title">Open &amp; transparent</h2>
+    <p class="sec-sub">The Deltix codebase is published for review — frontend, protocol node, chain engine, and mobile shell.</p>
+    <a class="btn ghost" href="https://github.com/deltixnetwork">github.com/deltixnetwork →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>◆ Deltix Network</h4>
+        <p style="max-width:260px">A standalone, Ethereum-inspired DPoS network delivered as a mobile-first application.</p>
+      </div>
+      <div class="foot-col">
+        <h4>App</h4>
+        <a href="https://app.deltixllc.com">Launch App</a>
+        <a href="https://github.com/deltixnetwork/deltix-frontend-code/blob/main/WHITEPAPER.md">Whitepaper</a>
+        <a href="https://github.com/deltixnetwork">GitHub</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="https://app.deltixllc.com/terms.html">Terms of Service</a>
+        <a href="https://app.deltixllc.com/privacy.html">Privacy Policy</a>
+        <a href="https://app.deltixllc.com/delete-account.html">Delete Account</a>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <a href="mailto:support@deltixllc.com">support@deltixllc.com</a>
+      </div>
+    </div>
+    <div class="disclaimer">
+      $DLTX is an in-app utility and reward token with <b>no monetary value</b>. It is not redeemable for real-world currency or any other cryptocurrency, and it is not an investment product. Rewards are variable protocol incentives and are never guaranteed. Deltix Network is intended for users aged 18 and over.<br /><br />
+      © 2026 Deltix Network (Deltix LLC). All rights reserved.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
